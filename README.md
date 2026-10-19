@@ -4,7 +4,7 @@ A cross-platform desktop app that visualises how regular investments grow over t
 
 Built with **C# / .NET 9**, **Avalonia UI** and the **MVVM** pattern.
 
-<!-- Add a screenshot here: ![Screenshot](docs/screenshot.png) -->
+![Investment Calculator: inputs, growth chart and yearly table](docs/screenshot.png)
 
 ## Features
 
