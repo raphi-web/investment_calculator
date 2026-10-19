@@ -1,0 +1,84 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:InvestmentCalculator.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="InvestmentCalculator.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="InvestmentCalculator"
+        xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia">
+
+
+        <Design.DataContext>
+                <vm:MainWindowViewModel />
+        </Design.DataContext>
+
+        <Grid
+                ShowGridLines="False"
+                HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10">
+                <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" /> <!-- Inputs -->
+                        <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!-- Inputs -->
+                <StackPanel
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Spacing="10"
+                        VerticalAlignment="Top">
+
+
+                        <TextBlock Text="Start Balance (€)" />
+                        <TextBox Text="{Binding StartBalance}" />
+
+                        <TextBlock Text="Monthly Amount (€)" />
+                        <TextBox Text="{Binding MonthlyAmount}" />
+
+                        <TextBlock Text="Annual Interest Rate (%)" />
+                        <TextBox Text="{Binding AnnualInterestRate}" />
+
+                        <TextBlock Text="Years" />
+                        <TextBox Text="{Binding Years}" />
+
+                </StackPanel>
+                <!-- Plot -->
+                <lvc:CartesianChart
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Margin="0,0,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Series="{Binding Series}"
+                />
+                <!-- DataGrid aligned vertically to the Plot -->
+                <DataGrid ItemsSource="{Binding YearlyData}"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Grid.RowSpan="2"
+                        AutoGenerateColumns="False"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Margin="20,0,0,0">
+
+                        <DataGrid.Columns>
+                                <DataGridTextColumn Header="Year"
+                                        Binding="{Binding Year, StringFormat=N0}" />
+                                <DataGridTextColumn Header="Balance (€)"
+                                        Binding="{Binding Balance, StringFormat=N0}" />
+                                <DataGridTextColumn Header="Invested (€)"
+                                        Binding="{Binding Invested, StringFormat=N0}" />
+                                <DataGridTextColumn Header="Profit (€)"
+                                        Binding="{Binding Profit, StringFormat=N0}" />
+                        </DataGrid.Columns>
+                </DataGrid>
+        </Grid>
+
+</Window>
