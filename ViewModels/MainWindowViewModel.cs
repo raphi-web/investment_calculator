@@ -68,7 +68,6 @@ public partial class MainWindowViewModel : ViewModelBase {
         balance += balance * monthlyRate + amount;
       }
       double invested = year * 12 * amount + startBalance;
-      double profit = balance - invested;
 
       YearlyData.Add(new YearlyResult { Year = year, Balance = balance,
                                         Invested = invested });
@@ -116,6 +115,6 @@ public partial class MainWindowViewModel : ViewModelBase {
     this.RaisePropertyChanged(nameof(Series));
   }
 
-  public IList<ISeries> Series { get; set; }
+  public IList<ISeries> Series { get; set; } = new List<ISeries>();
   public MainWindowViewModel() { Calculate(); }
 }

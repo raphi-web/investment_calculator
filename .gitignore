@@ -1,2 +1,17 @@
+# Build output
 bin/
 obj/
+publish/
+out/
+
+# IDEs
+.idea/
+.vs/
+.vscode/
+*.user
+*.suo
+*.DotSettings.user
+
+# OS
+.DS_Store
+Thumbs.db
